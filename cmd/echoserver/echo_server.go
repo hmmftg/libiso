@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
-	mynet "github.com/hmmftg/libiso/net"
 	"log"
 	"net"
+
+	mynet "github.com/hmmftg/libiso/net"
+
 	//"testing"
 	"os"
 	"strconv"

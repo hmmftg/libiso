@@ -3,8 +3,8 @@ package net
 import (
 	"encoding/binary"
 	"net"
-	"time",
 	"strconv"
+	"time"
 )
 
 type MliType string
@@ -110,7 +110,7 @@ func (nt *NetCatClient) Read(opts *ReadOptions) ([]byte, error) {
 	switch nt.mliType {
 	case Mli2i, Mli2e:
 		mliByteLength = 2
-	case Mli4i, Mli4e, Mli4i, Mli4ai:
+	case Mli4i, Mli4e, Mli4ai, Mli4ae:
 		mliByteLength = 4
 	}
 
@@ -135,7 +135,9 @@ func (nt *NetCatClient) Read(opts *ReadOptions) ([]byte, error) {
 			msgLen -= mliByteLength
 		}
 	case Mli4ai, Mli4ae:
-		msgLen = strconv.Atoi(tmp)
+		var lenAscii = string(tmp)
+		var lenInt, _ = strconv.Atoi(lenAscii)
+		msgLen = uint32(lenInt)
 		if nt.mliType == Mli4ai {
 			msgLen -= mliByteLength
 		}
