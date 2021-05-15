@@ -2,7 +2,7 @@ package iso8583
 
 import (
 	"encoding/hex"
-	"github.com/rkbalgi/libiso/encoding/ebcdic"
+	"github.com/hmmftg/libiso/encoding/ebcdic"
 	"regexp"
 )
 

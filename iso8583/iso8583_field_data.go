@@ -4,7 +4,7 @@ import (
 	"encoding/hex"
 	"errors"
 	_ "fmt"
-	"github.com/rkbalgi/libiso/encoding/ebcdic"
+	"github.com/hmmftg/libiso/encoding/ebcdic"
 	"log"
 )
 

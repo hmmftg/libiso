@@ -5,7 +5,7 @@ package mac
 
 import (
 	"encoding/hex"
-	"github.com/rkbalgi/libiso/crypto"
+	"github.com/hmmftg/libiso/crypto"
 )
 
 // GenerateMacX99 generates a X9.9 MAC using a single length key  data will be zero padded if required

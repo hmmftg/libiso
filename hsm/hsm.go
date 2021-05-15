@@ -7,7 +7,7 @@ import (
 	//"bytes"
 	"encoding/binary"
 	"encoding/hex"
-	_net "github.com/rkbalgi/libiso/net"
+	_net "github.com/hmmftg/libiso/net"
 	"io"
 	"log"
 	"os"

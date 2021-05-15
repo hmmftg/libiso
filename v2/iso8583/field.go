@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/rkbalgi/libiso/encoding/ebcdic"
+	"github.com/hmmftg/libiso/encoding/ebcdic"
 	log "github.com/sirupsen/logrus"
 )
 

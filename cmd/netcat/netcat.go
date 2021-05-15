@@ -1,7 +1,7 @@
 package main
 
 import (
-	mynet "github.com/rkbalgi/libiso/net"
+	mynet "github.com/hmmftg/libiso/net"
 	"log"
 	"time"
 )

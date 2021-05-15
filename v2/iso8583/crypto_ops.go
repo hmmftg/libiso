@@ -4,7 +4,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"github.com/rkbalgi/libiso/crypto/pin"
+	"github.com/hmmftg/libiso/crypto/pin"
 )
 
 func (pgp *PinGenProps) Generate() ([]byte, error) {

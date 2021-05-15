@@ -1,4 +1,4 @@
-package iso8583 // github.com/rkbalgi/isosim/iso
+package iso8583 // github.com/hmmftg/isosim/iso
 
 import (
 	"bytes"

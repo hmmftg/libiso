@@ -2,7 +2,7 @@ package mac
 
 import (
 	"bytes"
-	"github.com/rkbalgi/libiso/utils"
+	"github.com/hmmftg/libiso/utils"
 	"testing"
 )
 

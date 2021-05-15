@@ -203,7 +203,7 @@ func parseVariable(parserCfg *ParserConfig, buf *bytes.Buffer, parsedMsg *Parsed
 	}
 
 	if field.LengthIndicatorMultiplier == 2 && field.DataEncoding == BINARY {
-		//special bcd field handling - https://github.com/rkbalgi/isosim/wiki/Variable-Fields
+		//special bcd field handling - https://github.com/hmmftg/isosim/wiki/Variable-Fields
 		if length%2 != 0 {
 			length++
 			length = length / 2

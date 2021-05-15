@@ -3,7 +3,7 @@ package iso_host
 import (
 	"bytes"
 	"errors"
-	. "github.com/rkbalgi/libiso/iso8583"
+	. "github.com/hmmftg/libiso/iso8583"
 	"log"
 	"os"
 )

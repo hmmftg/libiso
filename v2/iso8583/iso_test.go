@@ -2,7 +2,7 @@ package iso8583_test
 
 import (
 	"encoding/hex"
-	"github.com/rkbalgi/libiso/v2/iso8583"
+	"github.com/hmmftg/libiso/v2/iso8583"
 	log "github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 	"path/filepath"

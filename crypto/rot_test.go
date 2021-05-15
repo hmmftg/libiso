@@ -2,7 +2,7 @@ package crypto
 
 import "testing"
 
-//import "github.com/rkbalgi/crypto"
+//import "github.com/hmmftg/crypto"
 
 func Test_RotN_3(t *testing.T) {
 

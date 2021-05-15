@@ -1,14 +1,14 @@
 # libiso - A library of utilities related to payments, crypto, ISO8583 etc 
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/rkbalgi/libiso?sort=semver)
-![CircleCI](https://img.shields.io/circleci/build/github/rkbalgi/libiso/master?style=flat-square)
-[![Go Report Card](https://goreportcard.com/badge/github.com/rkbalgi/libiso)](https://goreportcard.com/report/github.com/rkbalgi/libiso)
-[![codecov](https://codecov.io/gh/rkbalgi/libiso/branch/master/graph/badge.svg)](https://codecov.io/gh/rkbalgi/libiso)
-![GitHub go.mod Go version (branch & subfolder of monorepo)](https://img.shields.io/github/go-mod/go-version/rkbalgi/libiso/master?filename=go.mod)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/hmmftg/libiso?sort=semver)
+![CircleCI](https://img.shields.io/circleci/build/github/hmmftg/libiso/master?style=flat-square)
+[![Go Report Card](https://goreportcard.com/badge/github.com/hmmftg/libiso)](https://goreportcard.com/report/github.com/hmmftg/libiso)
+[![codecov](https://codecov.io/gh/hmmftg/libiso/branch/master/graph/badge.svg)](https://codecov.io/gh/hmmftg/libiso)
+![GitHub go.mod Go version (branch & subfolder of monorepo)](https://img.shields.io/github/go-mod/go-version/hmmftg/libiso/master?filename=go.mod)
 
 ## Creating ISO8583 messages
 
-First, create a yaml file containing the spec definition (for example, see [this](https://github.com/rkbalgi/libiso/blob/master/v2/iso8583/testdata/iso_specs.yaml)) and then list that under a file called [specs.yaml](https://github.com/rkbalgi/libiso/blob/master/v2/iso8583/testdata/specs.yaml)
+First, create a yaml file containing the spec definition (for example, see [this](https://github.com/hmmftg/libiso/blob/master/v2/iso8583/testdata/iso_specs.yaml)) and then list that under a file called [specs.yaml](https://github.com/hmmftg/libiso/blob/master/v2/iso8583/testdata/specs.yaml)
 (ignore the .spec files - they're an older way of defining specs)
 
 1. Read all the specs defined (the path should contain the file specs.yaml)
@@ -20,7 +20,7 @@ if err := iso8583.ReadSpecs(filepath.Join(".", "testdata")); err != nil {
 }
 ```
 
-2. Once initialized you can construct ISO8583 messages like below (from https://github.com/rkbalgi/libiso/blob/master/v2/iso8583/iso_test.go#L20) -
+2. Once initialized you can construct ISO8583 messages like below (from https://github.com/hmmftg/libiso/blob/master/v2/iso8583/iso_test.go#L20) -
 
 ```go
 	specName := "ISO8583-Test"
@@ -66,7 +66,7 @@ if err := iso8583.ReadSpecs(filepath.Join(".", "testdata")); err != nil {
 	}
 	assert.Equal(t, "31313030300000000000c00030303430303034373636393737363534333237373737333336383236", hex.EncodeToString(msgData))
 ```
-Please checkout https://github.com/rkbalgi/isosim project which uses this library.
+Please checkout https://github.com/hmmftg/isosim project which uses this library.
 
 ## Benchmarks
 With v2.0.1 you can turn off logging (and hence gain some speed and lower allocations) using the new parser API
@@ -97,11 +97,11 @@ time="2020-10-11T09:56:02+05:30" level=debug msg="Reading file .. iso_specs.yaml
 time="2020-10-11T09:56:02+05:30" level=debug msg="Reading file .. sample_spec.yaml"
 goos: windows
 goarch: amd64
-pkg: github.com/rkbalgi/libiso/v2/iso8583
+pkg: github.com/hmmftg/libiso/v2/iso8583
 Benchmark_ParseWithParserAPI-8            327625              3692 ns/op            4016 B/op         27 allocs/op
 Benchmark_ParseWithMsg-8                   85014             14037 ns/op           12121 B/op        154 allocs/op
 PASS
-ok      github.com/rkbalgi/libiso/v2/iso8583    4.600s
+ok      github.com/hmmftg/libiso/v2/iso8583    4.600s
 PS C:\Users\rkbal\IdeaProjects\libiso\v2\iso8583>
 
 ```
@@ -135,4 +135,4 @@ Also, a new API for assembling
 
 
 # Paysim
-Paysim is an old application that uses this library. You can read more about paysim here - https://github.com/rkbalgi/go/wiki/Paysim
+Paysim is an old application that uses this library. You can read more about paysim here - https://github.com/hmmftg/go/wiki/Paysim

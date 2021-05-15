@@ -1,8 +1,8 @@
 package main
 
 import (
-	_ "github.com/rkbalgi/libiso/hsm"
-	"github.com/rkbalgi/libiso/hsm/console"
+	_ "github.com/hmmftg/libiso/hsm"
+	"github.com/hmmftg/libiso/hsm/console"
 	"sync"
 )
 

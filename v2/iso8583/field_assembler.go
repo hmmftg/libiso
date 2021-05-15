@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
-	"github.com/rkbalgi/libiso/encoding/ebcdic"
+	"github.com/hmmftg/libiso/encoding/ebcdic"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -136,7 +136,7 @@ func (asm *Assembler) assemble(buf *bytes.Buffer, meta *MetaInfo, parsedMsg *Par
 
 func lengthCorrection(field *Field, data []byte) (int, bool) {
 
-	// handling for special BCD fields - https://github.com/rkbalgi/isosim/wiki/Variable-Fields
+	// handling for special BCD fields - https://github.com/hmmftg/isosim/wiki/Variable-Fields
 
 	if field.DataEncoding == BINARY && field.LengthIndicatorMultiplier == 2 {
 		if field.Padding == LeadingZeroes && (data[0]&0xF0 == 0x00) {

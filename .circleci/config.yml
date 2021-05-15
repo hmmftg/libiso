@@ -12,7 +12,7 @@ jobs:
         only:
           - master
 
-    working_directory: /go/src/github.com/rkbalgi/libiso
+    working_directory: /go/src/github.com/hmmftg/libiso
     steps:
       - checkout
 

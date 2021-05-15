@@ -3,9 +3,9 @@ package hsm
 import (
 	"bytes"
 	"encoding/hex"
-	"github.com/rkbalgi/libiso/crypto/mac"
+	"github.com/hmmftg/libiso/crypto/mac"
 	"log"
-	//_ "github.com/rkbalgi/hsm"
+	//_ "github.com/hmmftg/hsm"
 )
 
 type ThalesMsRequest struct {

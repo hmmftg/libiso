@@ -3,7 +3,7 @@ package iso8583
 import (
 	"bytes"
 	"encoding/hex"
-	ebcdic "github.com/rkbalgi/libiso/encoding/ebcdic"
+	ebcdic "github.com/hmmftg/libiso/encoding/ebcdic"
 	log "github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 	"testing"
