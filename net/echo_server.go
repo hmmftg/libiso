@@ -2,7 +2,7 @@ package net
 
 import (
 	"encoding/hex"
-	//"fmt"
+	"fmt"
 	"bytes"
 	bin "encoding/binary"
 	"log"
@@ -106,6 +106,22 @@ func AddMLI(mliType MliType, data []byte) []byte {
 		{
 			var mli []byte = make([]byte, 4)
 			bin.BigEndian.PutUint32(mli, uint32(len(data)+4))
+			buf := bytes.NewBuffer(mli)
+			buf.Write(data)
+			return buf.Bytes()
+		}
+	case Mli4ae:
+		{
+			var sMli = fmt.Sprintf("%04d", len(data))
+			var mli = []byte(sMli)
+			buf := bytes.NewBuffer(mli)
+			buf.Write(data)
+			return buf.Bytes()
+		}
+	case Mli4ai:
+		{
+			var sMli = fmt.Sprintf("%04d", len(data)+4)
+			var mli = []byte(sMli)
 			buf := bytes.NewBuffer(mli)
 			buf.Write(data)
 			return buf.Bytes()
