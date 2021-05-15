@@ -3,7 +3,8 @@ package net
 import (
 	"encoding/binary"
 	"net"
-	"time"
+	"time",
+	"strconv"
 )
 
 type MliType string
@@ -13,6 +14,10 @@ const (
 	Mli2e MliType = "2e"
 	Mli4e MliType = "4e"
 	Mli4i MliType = "4i"
+	//Mli4ai 4 ascii byte, include length of length
+	Mli4ai MliType = "4ai"
+	//Mli4ae 4 ascii byte, exclude length of length
+	Mli4ae MliType = "4ae"
 )
 
 // NetCatClient is network TCP client that can be used to send/receive length-delimited messages
@@ -105,7 +110,7 @@ func (nt *NetCatClient) Read(opts *ReadOptions) ([]byte, error) {
 	switch nt.mliType {
 	case Mli2i, Mli2e:
 		mliByteLength = 2
-	case Mli4i, Mli4e:
+	case Mli4i, Mli4e, Mli4i, Mli4ai:
 		mliByteLength = 4
 	}
 
@@ -127,6 +132,11 @@ func (nt *NetCatClient) Read(opts *ReadOptions) ([]byte, error) {
 	case Mli4i, Mli4e:
 		msgLen = binary.BigEndian.Uint32(tmp)
 		if nt.mliType == Mli4i {
+			msgLen -= mliByteLength
+		}
+	case Mli4ai, Mli4ae:
+		msgLen = strconv.Atoi(tmp)
+		if nt.mliType == Mli4ai {
 			msgLen -= mliByteLength
 		}
 	}
