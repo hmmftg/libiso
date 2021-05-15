@@ -21,7 +21,7 @@ const (
 )
 
 // NetCatClient is network TCP client that can be used to send/receive length-delimited messages
-// like 2E,2I, 4E, 4I etc
+// like 2E,2I, 4E, 4I, 4AE, 4AI etc
 type NetCatClient struct {
 	serverAddr string
 	mliType    MliType
