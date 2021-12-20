@@ -1,0 +1,30 @@
+package iransystem
+
+import (
+	"bytes"
+	"encoding/hex"
+	"testing"
+)
+
+func Test_IranSystem(t *testing.T) {
+
+	//t.Log(ebcdic_to_ascii)
+	buf := bytes.NewBuffer([]byte{})
+	buf.WriteByte(0x2)
+	buf.Bytes()
+
+	data, _ := hex.DecodeString("f0f1f2f3f42020202090919293949596")
+	str := EncodeToString(data)
+	t.Log(str, "\n")
+
+	data = Decode("حمید سلام")
+	t.Log(hex.EncodeToString(data), "\n")
+
+	fromBytes := EncodeToString([]byte{0xF0, 0xF1, 0xF0, 0xF0})
+	t.Log(fromBytes)
+
+	fromBytes = EncodeToString([]byte("حمید"))
+	t.Log(fromBytes)
+	t.Log(hex.EncodeToString([]byte("AGNS")))
+
+}

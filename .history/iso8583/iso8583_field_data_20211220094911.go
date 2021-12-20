@@ -32,6 +32,7 @@ func (fldData *FieldData) SetData(value string) error {
 
 	switch fldData.fieldDef.getDataEncoding() {
 	case asciiEncoding:
+	case iransystemEncoding:
 		{
 			switch fldData.fieldDef.(type) {
 			case *FixedFieldDef:
@@ -43,22 +44,6 @@ func (fldData *FieldData) SetData(value string) error {
 			default:
 				{
 					fldData.fieldData = []byte(value)
-				}
-			}
-
-		}
-	case iransystemEncoding:
-		{
-			data := iransystem.Decode(value)
-			switch fldData.fieldDef.(type) {
-			case *FixedFieldDef:
-				{
-					fldData.setTruncatePad(data)
-					break
-				}
-			default:
-				{
-					fldData.fieldData = data
 				}
 			}
 

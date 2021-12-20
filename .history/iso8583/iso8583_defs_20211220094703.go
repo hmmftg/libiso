@@ -65,10 +65,6 @@ func getEncodingType(encoding int) string {
 		{
 			return "ebcdic"
 		}
-	case iransystemEncoding:
-		{
-			return "iransystem"
-		}
 	default:
 		{
 			return "unknown"

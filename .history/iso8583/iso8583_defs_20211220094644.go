@@ -13,11 +13,11 @@ import (
 )
 
 const (
+	iransystemEncoding = iota
 	ebcdicEncoding     = iota
 	asciiEncoding      = iota + 1
 	bcdEncoding        = iota + 2
 	binaryEncoding     = iota + 3
-	iransystemEncoding = iota + 4
 )
 
 const (
@@ -64,10 +64,6 @@ func getEncodingType(encoding int) string {
 	case ebcdicEncoding:
 		{
 			return "ebcdic"
-		}
-	case iransystemEncoding:
-		{
-			return "iransystem"
 		}
 	default:
 		{

@@ -5,11 +5,9 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
+	"github.com/hmmftg/libiso/encoding/ebcdic"
 	"log"
 	"strconv"
-
-	"github.com/hmmftg/libiso/encoding/ebcdic"
-	"github.com/hmmftg/libiso/encoding/iransystem"
 )
 
 // VariableFieldDef represents the definition of a variable field
@@ -73,8 +71,6 @@ func (field *VariableFieldDef) Parse(
 	switch field.lengthEncoding {
 	case asciiEncoding:
 		dataLen, _ = strconv.ParseUint(string(tmp), 10, 64)
-	case iransystemEncoding:
-		dataLen, _ = strconv.ParseUint(iransystem.EncodeToString(tmp), 10, 64)
 	case ebcdicEncoding:
 		dataLen, _ = strconv.ParseUint(ebcdic.EncodeToString(tmp), 10, 64)
 	case binaryEncoding:

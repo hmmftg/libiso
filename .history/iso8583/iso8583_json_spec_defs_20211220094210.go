@@ -242,10 +242,6 @@ func getEncoding(isoFieldDef *JsonFieldDef, data string) int {
 		{
 			encodingType = asciiEncoding
 		}
-	case "iransystem":
-		{
-			encodingType = iransystemEncoding
-		}
 	case "ebcdic":
 		{
 			encodingType = ebcdicEncoding

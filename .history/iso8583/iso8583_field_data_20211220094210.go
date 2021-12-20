@@ -4,10 +4,8 @@ import (
 	"encoding/hex"
 	"errors"
 	_ "fmt"
-	"log"
-
 	"github.com/hmmftg/libiso/encoding/ebcdic"
-	"github.com/hmmftg/libiso/encoding/iransystem"
+	"log"
 )
 
 type FieldData struct {
@@ -43,22 +41,6 @@ func (fldData *FieldData) SetData(value string) error {
 			default:
 				{
 					fldData.fieldData = []byte(value)
-				}
-			}
-
-		}
-	case iransystemEncoding:
-		{
-			data := iransystem.Decode(value)
-			switch fldData.fieldDef.(type) {
-			case *FixedFieldDef:
-				{
-					fldData.setTruncatePad(data)
-					break
-				}
-			default:
-				{
-					fldData.fieldData = data
 				}
 			}
 
@@ -116,7 +98,6 @@ func (fldData *FieldData) setTruncatePad(data []byte) {
 	padByte := byte(0x00)
 	switch defObj.getDataEncoding() {
 	case asciiEncoding:
-	case iransystemEncoding:
 		padByte = 0x20
 	case ebcdicEncoding:
 		padByte = 0x40
@@ -159,10 +140,6 @@ func (fldData FieldData) String() string {
 		return string(fldData.fieldData)
 	case ebcdicEncoding:
 		encoded := ebcdic.EncodeToString(fldData.fieldData)
-		log.Println("encoded - ", encoded, "hex ", hex.EncodeToString(fldData.fieldData))
-		return encoded
-	case iransystemEncoding:
-		encoded := iransystem.EncodeToString(fldData.fieldData)
 		log.Println("encoded - ", encoded, "hex ", hex.EncodeToString(fldData.fieldData))
 		return encoded
 	case binaryEncoding:
