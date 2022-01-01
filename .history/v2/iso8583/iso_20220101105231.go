@@ -1,9 +1,6 @@
 package iso8583
 
 import (
-	"bytes"
-	"fmt"
-	"sort"
 	"time"
 )
 
@@ -98,31 +95,4 @@ func (iso *Iso) Bitmap() *Bitmap {
 // ParsedMsg returns the backing parsedMsg
 func (iso *Iso) ParsedMsg() *ParsedMsg {
 	return iso.parsedMsg
-}
-
-//create a string dump of the iso message
-func (iso *Iso) Dump() string {
-
-	msgBuf := bytes.NewBufferString("")
-
-	/*var bmp = iso.Bitmap
-	msgBuf.WriteString(fmt.Sprintf("\n%-25s: %s", "Bitmap", bmp.bitString()))
-
-	for i, fData := range bmp.childData {
-
-		if fData != nil && bmp.IsOn(i) {
-			msgBuf.WriteString(fmt.Sprintf("\n%-25s: %s", fData.fieldDef.String(), fData.String()))
-		}
-	}*/
-	keys := make([]int, 0)
-	for k, _ := range iso.parsedMsg.FieldDataMap {
-		keys = append(keys, k)
-	}
-	sort.Ints(keys)
-	for _, k := range keys {
-		var field = iso.parsedMsg.Msg.FieldById(k)
-		msgBuf.WriteString(fmt.Sprintf("\n%02d - %s : %s", field.ID, field.Name, iso.parsedMsg.FieldDataMap[k].Value()))
-	}
-
-	return msgBuf.String()
 }

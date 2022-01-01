@@ -18,9 +18,6 @@ const (
 	Mli4ai MliType = "4ai"
 	//Mli4ae 4 ascii byte, exclude length of length
 	Mli4ae MliType = "4ae"
-
-	ServerMode int = 0
-	ClientMode int = 1
 )
 
 // NetCatClient is network TCP client that can be used to send/receive length-delimited messages
@@ -49,24 +46,6 @@ func NewNetCatClient(addr string, mliType MliType) *NetCatClient {
 func (nt *NetCatClient) OpenConnection() (err error) {
 	nt.conn, err = net.Dial("tcp4", nt.serverAddr)
 	return err
-}
-
-// OpenConnection opens a connection to the server
-func (nt *NetCatClient) EstablishConnection(mode int) (err error) {
-	if mode == 1 {
-		nt.conn, err = net.Dial("tcp4", nt.serverAddr)
-		return err
-	}
-	listener, err := net.Listen("tcp", ":"+nt.serverAddr)
-	if err != nil {
-		return err
-	}
-	nt.conn, err = listener.Accept()
-	if err != nil {
-		return err
-	}
-	listener.Close()
-	return nil
 }
 
 // Close closes the client side of the connection
@@ -112,20 +91,6 @@ func (nt *NetCatClient) IsConnected() bool {
 func (nt *NetCatClient) ReadNextPacket() ([]byte, error) {
 
 	deadline := time.Now().Add(time.Duration(5) * time.Second)
-
-	return nt.Read(&ReadOptions{
-		Deadline: deadline,
-	})
-
-}
-
-// ReadNextPacket reads the next data segment (as per MLI type associated with nt)
-//
-// Deprecated:: Please use Read(*ReadOptions)
-//
-func (nt *NetCatClient) ReadNextPack(timeOut int) ([]byte, error) {
-
-	deadline := time.Now().Add(time.Duration(timeOut) * time.Second)
 
 	return nt.Read(&ReadOptions{
 		Deadline: deadline,
