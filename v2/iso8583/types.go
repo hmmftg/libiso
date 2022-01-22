@@ -94,7 +94,7 @@ type Field struct {
 
 	Children []*Field `yaml:"children"`
 
-	msg *Message `yaml:"-"json:"-"`
+	msg *Message `yaml:"-" json:"-"`
 	//for bitmap only
 	fieldsByPosition map[int]*Field
 
@@ -148,15 +148,15 @@ const (
 )
 
 type MacGenProps struct {
-	MacAlgo MacAlgo `yaml:"mac_algo",json:"mac_algo"`
-	MacKey  string  `yaml:"mac_key",json:"mac_key"`
+	MacAlgo MacAlgo `yaml:"mac_algo" json:"mac_algo"`
+	MacKey  string  `yaml:"mac_key" json:"mac_key"`
 }
 
 type PinGenProps struct {
-	PINClear         string    `yaml:"pin_clear",json:"pin_clear"`
-	PINFormat        PinFormat `yaml:"pin_format",json:"pin_format"`
-	PINKey           string    `yaml:"pin_key",json:"pin_key"`
-	PANFieldID       int       `yaml:"pan_field_id",json:"pan_field_id"`
-	PANExtractParams string    `yaml:"pan_extract_params",json:"pan_extract_params"`
-	PAN              string    `yaml:"pan",json:"pan"`
+	PINClear         string    `yaml:"pin_clear" json:"pin_clear"`
+	PINFormat        PinFormat `yaml:"pin_format" json:"pin_format"`
+	PINKey           string    `yaml:"pin_key" json:"pin_key"`
+	PANFieldID       int       `yaml:"pan_field_id" json:"pan_field_id"`
+	PANExtractParams string    `yaml:"pan_extract_params" json:"pan_extract_params"`
+	PAN              string    `yaml:"pan" json:"pan"`
 }

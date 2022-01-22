@@ -92,8 +92,8 @@ func readLegacyFile(specDir string, specFile string) error {
 			{
 				specRef, msgRef, fieldName, sFieldId := keyPart[0], keyPart[1], keyPart[2], keyPart[3]
 
-				spec, msg, err := resolveSpecAndMsg(specRef, msgRef)
-				if spec == nil || msg == nil {
+				_, msg, err := resolveSpecAndMsg(specRef, msgRef)
+				if err != nil {
 					return fmt.Errorf("libiso: Unknown spec/msg used. line: %d ", lineNo)
 				}
 				fieldId, err := strconv.Atoi(sFieldId)
@@ -117,8 +117,8 @@ func readLegacyFile(specDir string, specFile string) error {
 
 				specRef, msgRef, fieldRef, sPosition, fieldName, sFieldId := keyPart[0], keyPart[1], keyPart[2], keyPart[3], keyPart[4], keyPart[5]
 
-				spec, msg, err := resolveSpecAndMsg(specRef, msgRef)
-				if spec == nil || msg == nil {
+				_, msg, err := resolveSpecAndMsg(specRef, msgRef)
+				if err != nil {
 					return fmt.Errorf("libiso: Unknown spec/msg used. line: %d ", lineNo)
 				}
 				pos, err := strconv.Atoi(sPosition)

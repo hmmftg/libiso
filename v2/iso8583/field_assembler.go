@@ -31,7 +31,7 @@ func (asm *Assembler) assemble(buf *bytes.Buffer, meta *MetaInfo, parsedMsg *Par
 			if asm.cfg.LogEnabled {
 				asmLog.Debugf("Field %s, Length: %d, Value: %s\n", field.Name, len(fieldData.Data), hex.EncodeToString(fieldData.Data))
 			}
-			if field.Key == true {
+			if field.Key {
 				meta.MessageKey += fieldData.Value()
 			}
 			if field.DataEncoding == IRANSYSTEM {
@@ -58,7 +58,7 @@ func (asm *Assembler) assemble(buf *bytes.Buffer, meta *MetaInfo, parsedMsg *Par
 				if asm.cfg.LogEnabled {
 					asmLog.Debugf("Field %s, LL (Variable): %s, Value: %s\n", field.Name, hex.EncodeToString(lenBuf.Bytes()), hex.EncodeToString(fieldData.Data))
 				}
-				if field.Key == true {
+				if field.Key {
 					meta.MessageKey += fieldData.Value()
 				}
 				buf.Write(lenBuf.Bytes())
@@ -94,7 +94,7 @@ func (asm *Assembler) assemble(buf *bytes.Buffer, meta *MetaInfo, parsedMsg *Par
 				}
 				buf.Write(tempBuf.Bytes())
 				fieldData.Data = tempBuf.Bytes()
-				if field.Key == true {
+				if field.Key {
 					meta.MessageKey += fieldData.Value()
 				}
 				if asm.cfg.LogEnabled {
@@ -125,7 +125,7 @@ func (asm *Assembler) assemble(buf *bytes.Buffer, meta *MetaInfo, parsedMsg *Par
 					asmLog.Debugf("Field %s, LL (Variable): %s, Value: %s\n", field.Name, hex.EncodeToString(lenBuf.Bytes()), hex.EncodeToString(fieldData.Data))
 				}
 
-				if field.Key == true {
+				if field.Key {
 					meta.MessageKey += fieldData.Value()
 				}
 

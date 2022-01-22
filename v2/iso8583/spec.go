@@ -50,9 +50,7 @@ func (spec *Spec) GetMessages() []*Message {
 	defer specMapMu.RUnlock()
 
 	msgs := make([]*Message, 0, len(spec.Messages))
-	for _, msg := range spec.Messages {
-		msgs = append(msgs, msg)
-	}
+	msgs = append(msgs[:], spec.Messages[:]...)
 	return msgs
 }
 

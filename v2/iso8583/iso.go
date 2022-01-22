@@ -115,7 +115,7 @@ func (iso *Iso) Dump() string {
 		}
 	}*/
 	keys := make([]int, 0)
-	for k, _ := range iso.parsedMsg.FieldDataMap {
+	for k := range iso.parsedMsg.FieldDataMap {
 		keys = append(keys, k)
 	}
 	sort.Ints(keys)
