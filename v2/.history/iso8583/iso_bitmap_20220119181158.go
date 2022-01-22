@@ -97,9 +97,6 @@ func (bmp *Bitmap) Set(pos int, val string) error {
 			}
 			vFieldWithLI.Write(rawFieldData)
 			err = parseVariable(&ParserConfig{LogEnabled: false}, vFieldWithLI, bmp.parsedMsg, field)
-			if err != nil {
-				return fmt.Errorf("libiso: Unable to set value for variable field: %s :%w", field.Name, err)
-			}
 		}
 
 		if err != nil {

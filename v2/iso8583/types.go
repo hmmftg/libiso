@@ -2,8 +2,11 @@ package iso8583
 
 import (
 	"encoding/hex"
-	"github.com/hmmftg/libiso/encoding/ebcdic"
 	"regexp"
+
+	"libiso/encoding/iransystem"
+
+	"github.com/hmmftg/libiso/encoding/ebcdic"
 )
 
 type Specs struct {
@@ -36,10 +39,11 @@ const (
 	VariableType  FieldType = "Variable"
 	BitmappedType FieldType = "Bitmapped"
 
-	ASCII  Encoding = "ASCII"
-	EBCDIC Encoding = "EBCDIC"
-	BINARY Encoding = "BINARY"
-	BCD    Encoding = "BCD"
+	ASCII      Encoding = "ASCII"
+	EBCDIC     Encoding = "EBCDIC"
+	IRANSYSTEM Encoding = "IRANSYSTEM"
+	BINARY     Encoding = "BINARY"
+	BCD        Encoding = "BCD"
 
 	ContentTypeAny = "Any"
 
@@ -59,6 +63,8 @@ func (e Encoding) EncodeToString(data []byte) string {
 		return string(data)
 	case EBCDIC:
 		return ebcdic.EncodeToString(data)
+	case IRANSYSTEM:
+		return iransystem.EncodeToString(data)
 	case BCD, BINARY:
 		return hex.EncodeToString(data)
 	}

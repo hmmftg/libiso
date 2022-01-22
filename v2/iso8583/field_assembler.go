@@ -5,6 +5,9 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
+
+	"libiso/encoding/iransystem"
+
 	"github.com/hmmftg/libiso/encoding/ebcdic"
 	log "github.com/sirupsen/logrus"
 )
@@ -31,7 +34,11 @@ func (asm *Assembler) assemble(buf *bytes.Buffer, meta *MetaInfo, parsedMsg *Par
 			if field.Key == true {
 				meta.MessageKey += fieldData.Value()
 			}
-			buf.Write(fieldData.Data)
+			if field.DataEncoding == IRANSYSTEM {
+				buf.Write(iransystem.Decode(fieldData.Value()))
+			} else {
+				buf.Write(fieldData.Data)
+			}
 		}
 	case VariableType:
 		{
@@ -231,7 +238,7 @@ func buildLengthIndicator(lenEncoding Encoding, lenEncodingSize int, fieldLength
 		writeIntToBuf(lenBuf, uint64(fieldLength), lenEncodingSize, 10)
 	case BINARY:
 		writeIntToBuf(lenBuf, uint64(fieldLength), lenEncodingSize, 16)
-	case ASCII, EBCDIC:
+	case ASCII, EBCDIC, IRANSYSTEM:
 		lenIndStr := fmt.Sprintf(fmt.Sprintf("%%0%dd", lenEncodingSize), fieldLength) //to construct %04d,%02d as the format string
 		if lenEncoding == ASCII {
 			lenBuf.Write([]byte(lenIndStr))

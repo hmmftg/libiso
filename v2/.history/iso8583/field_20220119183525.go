@@ -213,7 +213,7 @@ func (f *Field) ValueFromString(data string) ([]byte, error) {
 		for _, child := range f.Children {
 			switch child.Type {
 			case FixedType:
-				subData := string([]rune(data)[offset : offset+child.Size])
+				subData := string([]rune(data)[offset:child.Size])
 				subByte, err := child.ValueFromString(subData)
 				if err != nil {
 					return nil, err
@@ -221,15 +221,13 @@ func (f *Field) ValueFromString(data string) ([]byte, error) {
 				byteData = append(byteData[:], subByte[:]...)
 				offset += child.Size
 			case VariableType:
-				subDataLenStr := string([]rune(data)[offset : offset+child.LengthIndicatorSize])
+				subDataLenStr := string([]rune(data)[offset:child.LengthIndicatorSize])
 				subDataLen, _ := strconv.Atoi(subDataLenStr)
-				subData := string([]rune(data)[offset+child.LengthIndicatorSize : offset+child.LengthIndicatorSize+subDataLen])
+				subData := string([]rune(data)[offset+child.LengthIndicatorSize : subDataLen])
 				subByte, err := child.ValueFromString(subData)
 				if err != nil {
 					return nil, err
 				}
-				lenIndStr := fmt.Sprintf(fmt.Sprintf("%%0%dd", child.LengthIndicatorSize), subDataLen)
-				byteData = append(byteData[:], []byte(lenIndStr)[:]...)
 				byteData = append(byteData[:], subByte[:]...)
 				offset += child.LengthIndicatorSize + subDataLen
 			}

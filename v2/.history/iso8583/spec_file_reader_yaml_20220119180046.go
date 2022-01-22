@@ -111,9 +111,6 @@ func processChildren(msg *Message, f *Field) error {
 			}
 
 			f.setAux(cf)
-			if f.fieldsByPosition == nil {
-				f.fieldsByPosition = make(map[int]*Field, 1)
-			}
 			if _, ok := f.fieldsByPosition[cf.Position]; !ok {
 				f.fieldsByPosition[cf.Position] = cf
 			}

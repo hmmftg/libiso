@@ -6,8 +6,9 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	log "github.com/sirupsen/logrus"
 	"strconv"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // ErrInsufficientData is an error when there is not enough data in the raw message to parse it
@@ -190,6 +191,10 @@ func parseVariable(parserCfg *ParserConfig, buf *bytes.Buffer, parsedMsg *Parsed
 		}
 	case ASCII:
 		if length, err = strconv.ParseUint(string(lenData), 10, 64); err != nil {
+			return err
+		}
+	case IRANSYSTEM:
+		if length, err = strconv.ParseUint(IRANSYSTEM.EncodeToString(lenData), 10, 64); err != nil {
 			return err
 		}
 	case EBCDIC:
